@@ -16,6 +16,7 @@ class FlatAdmin(admin.ModelAdmin):
     )
     list_editable = ('new_building',)
     list_filter = ('new_building',)
+    raw_id_fields = ('liked_by',)
 
 
 @admin.register(Complaint)
