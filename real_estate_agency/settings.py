@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-
+    'phonenumber_field',
     'property.apps.PropertyConfig',
 ]
 
@@ -96,9 +96,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 DATABASES = {
-    'default': dj_database_url.parse(
-        os.getenv('DATABASE', 'sqlite:///db.sqlite3')
-    ),
+    'default': dj_database_url.config(
+        default='sqlite:///db.sqlite3',
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
