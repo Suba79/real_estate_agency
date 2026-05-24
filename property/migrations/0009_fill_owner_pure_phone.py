@@ -11,6 +11,9 @@ def fill_owner_pure_phone(apps, schema_editor):
         except phonenumbers.NumberParseException:
             continue
 
+        if not phonenumbers.is_valid_number(parsed_phone):
+            continue
+
         flat.owner_pure_phone = phonenumbers.format_number(
             parsed_phone,
             phonenumbers.PhoneNumberFormat.E164,
